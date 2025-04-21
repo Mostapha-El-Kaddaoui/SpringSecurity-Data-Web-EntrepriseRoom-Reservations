@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="template.html">
+<head>
+    <meta charset="UTF-8">
+    <title>Liste des patients</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-100 text-gray-800">
+<div layout:fragment="content">
+    <div class="p-6 max-w-6xl mx-auto">
+        <div class="bg-white shadow-lg rounded-xl">
+            <div class="bg-blue-600 text-white text-lg font-semibold px-6 py-4 rounded-t-xl">
+                Liste des patients
+            </div>
+            <div class="p-6 space-y-6">
+                <!-- Search Form -->
+                <form method="get" th:href="@{/user/index}" class="flex flex-col sm:flex-row items-center gap-4">
+                    <label class="text-sm font-medium">Enter Employee Id:</label>
+                    <input type="text" name="empNom" class="border border-gray-300 rounded-lg px-4 py-2 w-full sm:w-64 focus:outline-none focus:ring-2 focus:ring-blue-400">
+                    <button class="bg-blue-500 text-white px-4 py-2 rounded-lg hover:bg-blue-600 transition duration-200">
+                        🔍
+                    </button>
+                </form>
+
+                <!-- Table -->
+                <div class="overflow-x-auto">
+                    <table class="min-w-full text-sm text-left border border-gray-200">
+                        <thead class="bg-gray-100 text-gray-600 uppercase">
+                        <tr>
+                            <th class="px-4 py-2 border-b">ID</th>
+                            <th class="px-4 py-2 border-b">Description</th>
+                            <th class="px-4 py-2 border-b">Date</th>
+                            <th class="px-4 py-2 border-b">Duration</th>
+                            <th class="px-4 py-2 border-b">Type</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr th:each="r:${listReservations}" class="hover:bg-gray-50">
+                            <td class="px-4 py-2 border-b" th:text="${r.id}"></td>
+                            <td class="px-4 py-2 border-b" th:text="${r.description}"></td>
+                            <td class="px-4 py-2 border-b" th:text="${r.date}"></td>
+                            <td class="px-4 py-2 border-b" th:text="${r.duration}"></td>
+                            <td class="px-4 py-2 border-b" th:text="${r.type}"></td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <!-- Pagination -->
+                <div class="flex flex-wrap gap-2">
+                    <a th:each="page,status:${pages}"
+                       th:href="@{/user/index(page=${status.index}, empId=${empId})}"
+                       th:text="${status.index}"
+                       th:class="${status.index==currentPage ? 'bg-blue-500 text-white px-3 py-1 rounded-lg' : 'bg-white border border-blue-500 text-blue-500 px-3 py-1 rounded-lg hover:bg-blue-50'}">
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>
