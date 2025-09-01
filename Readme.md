@@ -67,17 +67,11 @@ The application will start on [http://localhost:8085](http://localhost:8085).
 ## Screenshots
 
 - **Login Page:**  
-  ![Login](src/main/resources/templates/login.html)
-- **Reservation List:**  
-  ![Index](src/main/resources/templates/index.html)
+  ![Login](./login-room.png)
+- **Home Page:**  
+  ![Home](./home-room.png)
 - **Reservation Form:**  
-  ![Form](src/main/resources/templates/formReservation.html)
-
-## License
-
-This project is licensed under the Apache License 2.0.
+  ![Form](./add-room.png)
 
 ---
-
-**Author:**  
-[ma.enset](https://github.com/ma-enset)
+Copyright © 2025, All Rights Reserved For ELKADDI-Solutions
